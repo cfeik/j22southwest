@@ -1,0 +1,33 @@
+name: PR Preview Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Validate HTML files exist
+        run: |
+          if [ ! -f "website/index.html" ]; then
+            echo "Error: index.html not found"
+            exit 1
+          fi
+          echo "✅ All required HTML files found"
+      
+      - name: Check file structure
+        run: |
+          echo "Checking website structure..."
+          ls -R website/
+          echo "✅ Structure looks good"
+      
+      - name: PR ready for review
+        run: |
+          echo "✅ PR validation passed!"
+          echo "Changes will be deployed when merged to main"

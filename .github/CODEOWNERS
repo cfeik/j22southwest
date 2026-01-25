@@ -1,0 +1,5 @@
+# Require approval from repository owner for all changes
+* @cfullerton
+
+# Require approval for workflow changes (extra security)
+/.github/workflows/ @cfullerton
